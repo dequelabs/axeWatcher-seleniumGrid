@@ -9,7 +9,7 @@ import org.testng.annotations.BeforeMethod;
 import com.deque.axe_core.commons.AxeWatcherOptions;
 import com.deque.axe_core.selenium.AxeWatcher;
 import com.deque.axe_core.selenium.AxeWatcherDriver;
-
+import io.github.bonigarcia.wdm.WebDriverManager;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
@@ -23,24 +23,29 @@ public class Base {
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--disable-dev-shm-usage");
 
-        WebDriver baseDriver;
         try {
-            baseDriver = new RemoteWebDriver(new URL("http://localhost:4444/"), chromeOptions);
+          driver = new RemoteWebDriver(new URL("http://localhost:4444/"), chromeOptions);
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
 
         AxeWatcherOptions options = new AxeWatcherOptions()
-                .setApiKey("e514e163-ee4d-4f82-8fa5-cb413683e574")
+                .setApiKey("5befbd25-f023-47a5-a8b7-5025faf5c923")
                 .setServerUrl("https://axe-qa.dequelabs.com");
 
         AxeWatcher watcher = new AxeWatcher(options).enableDebugLogger();
-        driver = watcher.wrapDriver((ChromeDriver) baseDriver);
+        WebDriverManager.chromedriver().setup();
+        chromeOptions = watcher.configure(chromeOptions);
+
+        // Wrap the WebDriver with Axe Watcher
+        driver = watcher.wrapDriver(new ChromeDriver(chromeOptions));
 
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
         driver.manage().window().maximize();
         driver.get("https://www.jetbrains.com/");
     }
+    // Set up WebDriver using WebDriverManager
+
 
     @AfterMethod
     public void tearDown() {
