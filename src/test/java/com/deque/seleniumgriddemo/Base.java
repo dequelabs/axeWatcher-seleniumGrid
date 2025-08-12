@@ -30,8 +30,8 @@ public class Base {
         }
 
         AxeWatcherOptions options = new AxeWatcherOptions()
-                .setApiKey("5befbd25-f023-47a5-a8b7-5025faf5c923")
-                .setServerUrl("https://axe-qa.dequelabs.com");
+                .setApiKey("your-api-key")
+                .setServerUrl("server-url");
 
         AxeWatcher watcher = new AxeWatcher(options).enableDebugLogger();
         WebDriverManager.chromedriver().setup();
