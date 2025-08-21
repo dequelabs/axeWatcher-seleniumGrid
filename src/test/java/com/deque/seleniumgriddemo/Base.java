@@ -6,6 +6,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.slf4j.simple.*;
+import org.slf4j.spi.*;
 import com.deque.axe_core.commons.AxeWatcherOptions;
 import com.deque.axe_core.selenium.AxeWatcher;
 import com.deque.axe_core.selenium.AxeWatcherDriver;
@@ -22,6 +24,8 @@ public class Base {
     public void setUp() {
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--disable-dev-shm-usage");
+        // TODO: unless you are using branded Chrome < 139, use Chromium or Chrome for Testing
+        chromeOptions.setBinary("/Applications/Google Chrome for Testing.app");
 
         try {
           driver = new RemoteWebDriver(new URL("http://localhost:4444/"), chromeOptions);
@@ -30,8 +34,9 @@ public class Base {
         }
 
         AxeWatcherOptions options = new AxeWatcherOptions()
-                .setApiKey("your-api-key")
-                .setServerUrl("server-url");
+            // TODO: use real credentials
+                .setApiKey("my-api-key")
+                .setServerUrl("https://axe.dequelabs.com");
 
         AxeWatcher watcher = new AxeWatcher(options).enableDebugLogger();
         WebDriverManager.chromedriver().setup();
