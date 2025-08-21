@@ -36,7 +36,7 @@ public class Base {
         AxeWatcherOptions options = new AxeWatcherOptions()
             // TODO: use real credentials
                 .setApiKey("my-api-key")
-                .setServerUrl("https://axe.dequelabs.com");
+                .setServerUrl("https://axe.deque.com");
 
         AxeWatcher watcher = new AxeWatcher(options).enableDebugLogger();
         WebDriverManager.chromedriver().setup();
