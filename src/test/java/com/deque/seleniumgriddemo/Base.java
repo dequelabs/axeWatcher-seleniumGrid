@@ -42,7 +42,7 @@ public class Base {
         // Wrap the WebDriver with Axe Watcher
         driver = watcher.wrapDriver(new ChromeDriver(chromeOptions));
 
-        driver.manage().timeouts().scriptTimeout(Duration.ofSeconds(90));
+        driver.manage().timeouts().scriptTimeout(Duration.ofMinutes(2));
         driver.manage().window().maximize();
         driver.get("https://www.jetbrains.com/");
         mainPage = new MainPage(driver);
