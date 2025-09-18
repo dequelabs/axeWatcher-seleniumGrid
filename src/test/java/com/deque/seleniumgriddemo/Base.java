@@ -1,19 +1,21 @@
 package com.deque.seleniumgriddemo;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.time.Duration;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+
 import com.deque.axe_core.commons.AxeWatcherOptions;
 import com.deque.axe_core.selenium.AxeWatcher;
 import com.deque.axe_core.selenium.AxeWatcherDriver;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.time.Duration;
-import java.util.UUID;
 
 public class Base {
     public WebDriver driver;
@@ -32,8 +34,8 @@ public class Base {
         }
 
         AxeWatcherOptions options = new AxeWatcherOptions()
-                .setApiKey("474c5470-aaf8-41b5-8524-49a4ff05c25d")
-                .setServerUrl("https://axe-qa.dequelabs.com");
+                .setApiKey("your-api-key")
+                .setServerUrl("servcer-url");
 
         AxeWatcher watcher = new AxeWatcher(options).enableDebugLogger();
         WebDriverManager.chromedriver().setup();
